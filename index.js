@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const userRouter = require('./src/route/user.route');
+const db = require('./src/config/db.conf')
 
 app.use('/user', userRouter);
 
@@ -13,6 +14,9 @@ app.use((err, req, res, next) => {
     
     return;
 });
+
+console.log(db.dbConfigs);
+// db.sync('Banco conectado!');
 
 app.get('/', (req, res) => {
   res.send('Hello NodeTest')
